@@ -51,6 +51,9 @@
                 if ($page == "login") {
                     include("login.php");
                 }
+                else if ($page == "home") {
+                    echo "<p>This is home page</p>";
+                }
             ?>
         </main>
 
