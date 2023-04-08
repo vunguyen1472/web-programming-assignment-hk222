@@ -30,7 +30,7 @@
                             <a href="?page=home" class="nav-link">Home</a>
                         </li>
                         <li class="nav-item px-3">
-                            <a href="?page=task-management" class="nav-link">Task management</a>
+                            <a href="?page=tasks-management" class="nav-link">Tasks management</a>
                         </li>
                         <li class="nav-item px-3">
                             <a href="?page=role-management" class="nav-link">Role management</a>
@@ -44,12 +44,18 @@
         </header>
         
 
-        <main class="py-3">
+        <main class="py-4">
             <?php
                 $page = isset($_GET['page'])? $_GET['page'] : "home";
                 
                 if ($page == "login") {
                     include("login.php");
+                }
+                else if ($page == "tasks-management") {
+                    include("tasks-management.php");
+                }
+                else if ($page == "task-management") {
+                    include("task-management.php");
                 }
                 else if ($page == "home") {
                     echo "<p>This is home page</p>";
