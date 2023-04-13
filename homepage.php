@@ -1,9 +1,10 @@
 <?php
-    session_start();
+session_start();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,6 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <title>Enterprise Managment</title>
 </head>
+
 <body>
     <div class="container">
         <header class="py-3 border-bottom">
@@ -21,7 +23,7 @@
                 <a href="" class="navbar-brand">
                     <img src="images/logo.png" alt="logo" id="header-logo">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar--collapsed" aria-controls="#navbar--collapsed" aria-expanded="false" >
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar--collapsed" aria-controls="#navbar--collapsed" aria-expanded="false">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbar--collapsed">
@@ -33,6 +35,9 @@
                             <a href="?page=tasks-management" class="nav-link">Tasks management</a>
                         </li>
                         <li class="nav-item px-3">
+                            <a href="?page=dashboard" class="nav-link">Dashboad</a>
+                        </li>
+                        <li class="nav-item px-3">
                             <a href="?page=role-management" class="nav-link">Role management</a>
                         </li>
                         <li class='nav-item px-3'>
@@ -42,24 +47,30 @@
                 </div>
             </nav>
         </header>
-        
+
 
         <main class="py-4">
             <?php
-                $page = isset($_GET['page'])? $_GET['page'] : "home";
-                
-                if ($page == "login") {
-                    include("login.php");
-                }
-                else if ($page == "tasks-management") {
-                    include("tasks-management.php");
-                }
-                else if ($page == "task-management") {
-                    include("task-management.php");
-                }
-                else if ($page == "home") {
-                    echo "<p>This is home page</p>";
-                }
+            $page = isset($_GET['page']) ? $_GET['page'] : "home";
+
+            if ($page == "login") {
+                include("login.php");
+            } else if ($page == "tasks-management") {
+                include("tasks-management.php");
+            } else if ($page == "task-management") {
+                include("task-management.php");
+            } else if ($page == "dashboard") {
+                // echo '<style>div.container {margin: 0px;}</style>';
+                include("dashboard.php");
+            } else if ($page == "task_description") {
+                // echo '<style>div.container {margin: 0px;}</style>';
+                include("task_description.php");
+            } else if ($page == "task_description_done") {
+                // echo '<style>div.container {margin: 0px;}</style>';
+                include("task_description_done.php");
+            } else if ($page == "home") {
+                echo "<p>This is home page</p>";
+            }
             ?>
         </main>
 
@@ -108,4 +119,5 @@
         </footer>
     </div>
 </body>
+
 </html>
