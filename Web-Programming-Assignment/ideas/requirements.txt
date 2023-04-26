@@ -1,0 +1,15 @@
+Requirements: 
+- Authentication: 
+	+ All the employees have account to log in the system, each account includes username, password (hashed), user_roles (director, department head, employee)
+
+- Authorization: 
+	+ The employees when logged in will be sorted into levels (director > department head > employee)
+	+ Department head can see the list of all employees and their available status. They can ask the director for the available one to his/her department (may store the information of the department: #employees, tasks, head_name, ...). This will inform the director and the director can approve or reject the requirement.
+
+- Task assignment:
+	+ Director assigns tasks for department head, department head assigns tasks for employees
+	+ A task includes: name, description, deadline, employee_names, supervisor (department head), submissions, status (approved, rejected, in progress, waiting), (may include sub-tasks)...
+	+ A submission could be text (or a file) and includes comments from submitter, submit day, (may have status) ...
+	+ The department head can view the submission of the tasks from employee and can approve/reject/comment
+	
+	
