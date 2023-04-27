@@ -25,6 +25,7 @@
                     <div class='project-column-heading'>
                         <h2 class='project-column-heading__title'>Task Ready</h2><button class='project-column-heading__options'><i class="fas fa-ellipsis-h"></i></button>
                     </div>
+
                     <?php include('approved.php'); ?>
                 </div>
                 <div class='project-column'>

@@ -20,7 +20,7 @@
     </div>
     <?php
     // Connect to your database
-    $conn = mysqli_connect("localhost", "root", "", "dashboard");
+    $conn = mysqli_connect("localhost", "root", "", "enterprise_management");
 
     // Check connection
     if (!$conn) {
@@ -31,16 +31,16 @@
     $sql = "SELECT * FROM task WHERE status = 'done'";
     $result = mysqli_query($conn, $sql);
 
-    function savedoneDescription($description)
-    {
-        $_SESSION['description_done'] = $description;
-    }
+    // function savedoneDescription($description)
+    // {
+    //     $_SESSION['description_done'] = $description;
+    // }
 
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<div class='task' draggable='true' >";
         echo '<h6 style="display:none;">' . $row['status'] . '</h6>';
         echo "<div class='task__tags'><span class='task__tag task__tag--" . $row['name'] . "'>" . $row['name'] . "</span><button class='task__options'><i class='fas fa-ellipsis-h'></i></button></div>";
-        echo "<a href='homepage.php?page=task_description_done' style='color: black; text-decoration: none;' onclick='savedoneDescription(" . json_encode($row['description']) . ")'>";
+        echo "<a href='homepage.php?page=task_description' style='color: black; text-decoration: none;' onclick='saveDescription(" . json_encode($row['description']) . ")'>";
         echo "<p>" . $row['description'] . "</p></a>";
 
         echo "<div class='task__stats'>";

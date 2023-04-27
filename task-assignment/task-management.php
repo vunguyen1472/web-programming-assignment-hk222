@@ -5,7 +5,50 @@
     <link rel="stylesheet" href="css\task-management.css">
 </head>
 <body>
-    <h4>This is the name of this task</h4>
+    <?php 
+        function getConnection() {
+            $servername = "localhost";
+            $username = "root";
+            $password = NULL;
+            $dbname = "enterprise_management";
+    
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+    
+            return $conn;
+        }
+
+        function getTaskName($task_id){
+            $conn = getConnection();
+
+            $sql = "SELECT `name` FROM task WHERE id = " . $task_id;
+            $result = $conn->query($sql);
+
+            $row = mysqli_fetch_assoc($result);
+
+            $conn->close();
+
+            return $row["name"];
+        }
+
+        function getTaskDescription($task_id){
+            $conn = getConnection();
+
+            $sql = "SELECT `description` FROM task WHERE id = " . $task_id;
+            $result = $conn->query($sql);
+
+            $row = mysqli_fetch_assoc($result);
+
+            $conn->close();
+
+            return $row["description"];
+        }
+
+        echo "<h4>" . getTaskName($_GET['task-id']) . "</h4>";
+    ?>
     <div class="border-bottom pt-2 pb-4 d-flex">
         <div class="me-5">
             <i class="fa-regular fa-clock me-2"></i>
@@ -20,12 +63,10 @@
             <span class="fw-bold text-primary">In progress</span>
         </div>
     </div>
-    <p class="border-bottom py-4 mb-0">
-        Description: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam ut doloremque amet voluptates reiciendis facere, magni, commodi numquam atque pariatur ab rerum nulla qui repellat perferendis cupiditate alias repellendus voluptatem?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis asperiores suscipit explicabo itaque perferendis magni nisi nemo. Labore aperiam, enim delectus doloremque, eius et iure nam ex perspiciatis incidunt totam!
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, quas quasi vero dicta quidem quisquam libero qui ipsam aut facere tenetur illum veritatis perspiciatis? Sed aliquam molestiae temporibus ab quasi.
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem reprehenderit quaerat sunt rem, fugit adipisci et veritatis saepe impedit tenetur totam. Quod illum autem quas delectus reiciendis consectetur eligendi deserunt.
-    </p>
+    <?php
+        echo "<p class='border-bottom py-4 mb-0'>" . getTaskDescription($_GET['task-id']). "</p>";
+    ?>
+
     <ul class="submission-list d-flex flex-wrap border-bottom px-0 mb-0">
         <li class="submission d-flex m-4">
             <i class="fa-regular fa-file me-4"></i>

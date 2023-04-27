@@ -19,7 +19,7 @@
     </div>
     <?php
     // Connect to your database
-    $conn = mysqli_connect("localhost", "root", "", "dashboard");
+    $conn = mysqli_connect("localhost", "root", "", "enterprise_management");
 
     // Check connection
     if (!$conn) {
@@ -35,7 +35,9 @@
         echo "<div class='task' draggable='true' >";
         echo '<h6 style="display:none;">' . $row['status'] . '</h6>';
         echo "<div class='task__tags'><span class='task__tag task__tag--" . $row['name'] . "'>" . $row['name'] . "</span><button class='task__options'><i class='fas fa-ellipsis-h'></i></button></div>";
-        echo "<p>" . $row['description'] . "</p>";
+        echo "<a href='homepage.php?page=task_description' style='color: black; text-decoration: none;' onclick='saveDescription(" . json_encode($row['description']) . ")'>";
+        echo "<p>" . $row['description'] . "</p></a>";
+
         echo "<div class='task__stats'>";
         echo "<span><time datetime='" . $row['deadline'] . "'><i class='fas fa-flag'></i>" . date("M j, Y", strtotime($row['deadline'])) . "</time></span>";
         echo "<span><i class='fas fa-comment'></i>" . $row['name'] . "</span>";

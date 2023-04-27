@@ -3,3 +3,35 @@ user(username: foreign -> account.username, name: varchar, gender: enum('male', 
 department(dp_head: foreign -> user.name + primary, name: varchar)
 task(description: varchar, deadline: datetime, name: varchar, status: enum('approved', 'rejected', 'in progress', 'waiting'), dp_name: foreign -> department.name)
 submission(id: primary, content: varchar, date: datetime)
+
+account:
+	- username (*)
+	- password 
+
+user: 
+	- username (*)
+	- gender
+	- ...
+	- role
+
+department:
+	- name (*)
+	- head
+
+task:
+	- username (foreign key) -> who is currently responsible for the task
+	- name (*) -> task's name
+	- description
+	- deadline
+	- status 
+	
+task_comment:
+	- username
+	- 
+
+submission
+	- content
+	- submit_datetime
+	- task_name (foregin key)
+	
+

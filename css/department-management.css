@@ -1,0 +1,35 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+#project-list-container, #staff-list-container {
+    border: 1px solid black;
+    width: 48%;
+}
+
+#project-list, #staff-list {
+    list-style-type: none;
+    overflow-y: scroll;
+    height: 10rem;
+}
+
+#project-list-container>p, #staff-list-container>p {
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#available-staff-list-background {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+}
+

@@ -20,7 +20,7 @@
     </div>
     <?php
     // Connect to your database
-    $conn = mysqli_connect("localhost", "root", "", "dashboard");
+    $conn = mysqli_connect("localhost", "root", "", "enterprise_management");
 
     // Check connection
     if (!$conn) {
@@ -31,10 +31,10 @@
     $sql = "SELECT * FROM task WHERE status = 'approved'";
     $result = mysqli_query($conn, $sql);
 
-    function saveDescription($description)
-    {
-        $_SESSION['description'] = $description;
-    }
+    // function saveDescription($description)
+    // {
+    //     $_SESSION['description'] = $description;
+    // }
 
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<div class='task' draggable='true' >";

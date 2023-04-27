@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="css\tasks-management.css">
 </head>
 <body>
-<h4>Tasks management</h4>
+<h4 style="font-weight: 600">Tasks management</h4>
 
 <div class="border p-4 mt-4 shadow">
     <h6 class="mb-4 ">Your tasks</h6>

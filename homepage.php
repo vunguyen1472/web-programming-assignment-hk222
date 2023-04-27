@@ -1,5 +1,5 @@
 <?php
-session_start();
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ session_start();
 
 <body>
     <div class="container">
-        <header class="py-3 border-bottom">
+        <header class="py-3">
             <nav class="navbar navbar-expand-lg d-flex align-items-end">
                 <a href="" class="navbar-brand">
                     <img src="images/logo.png" alt="logo" id="header-logo">
@@ -28,20 +28,33 @@ session_start();
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbar--collapsed">
                     <ul class="navbar-nav fs-5">
-                        <li class="nav-item px-3">
+                        <li class="nav-item mx-3">
                             <a href="?page=home" class="nav-link">Home</a>
                         </li>
-                        <li class="nav-item px-3">
+                        <li class="nav-item mx-3">
                             <a href="?page=tasks-management" class="nav-link">Tasks management</a>
                         </li>
-                        <li class="nav-item px-3">
+                        <li class="nav-item mx-3">
                             <a href="?page=dashboard" class="nav-link">Dashboad</a>
                         </li>
-                        <li class="nav-item px-3">
+                        <li class="nav-item mx-3">
                             <a href="?page=role-management" class="nav-link">Role management</a>
                         </li>
                         <li class='nav-item px-3'>
                             <a href='?page=login' class='nav-link'>Login</a>
+                        </li>
+                        <li class='nav-item mx-3 dropdown'>
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Department
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-item">
+                                    <a href='?page=department-management' class='nav-link'>Department management</a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a href='?page=project-management' class='nav-link'>Projects management</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -56,19 +69,20 @@ session_start();
             if ($page == "login") {
                 include("login.php");
             } else if ($page == "tasks-management") {
-                include("tasks-management.php");
+                include("C:\\xampp\htdocs\\assignment\\task-assignment\\tasks-management.php");
             } else if ($page == "task-management") {
-                include("task-management.php");
+                include("C:\\xampp\htdocs\\assignment\\task-assignment\\task-management.php");
             } else if ($page == "dashboard") {
                 // echo '<style>div.container {margin: 0px;}</style>';
                 include("dashboard.php");
+            } else if ($page == 'department-management'){
+                include("department-management.php");
+            } else if ($page == 'project-management'){
+                include("project-management.php");
             } else if ($page == "task_description") {
                 // echo '<style>div.container {margin: 0px;}</style>';
                 include("task_description.php");
-            } else if ($page == "task_description_done") {
-                // echo '<style>div.container {margin: 0px;}</style>';
-                include("task_description_done.php");
-            } else if ($page == "home") {
+            }  else if ($page == "home") {
                 echo "<p>This is home page</p>";
             }
             ?>
@@ -118,6 +132,15 @@ session_start();
             </nav>
         </footer>
     </div>
+    <script>
+        function saveDescription(description) {
+            sessionStorage.setItem('description', description);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'save_description.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('description=' + encodeURIComponent(description));
+        }
+    </script>
 </body>
 
 </html>

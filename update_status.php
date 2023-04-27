@@ -6,7 +6,7 @@ $innerText = $_POST['innerText'];
 $innerp = $_POST['innerp'];
 
 // Connect to the database
-$conn = mysqli_connect("localhost", "root", "", "dashboard");
+$conn = mysqli_connect("localhost", "root", "", "enterprise_management");
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
