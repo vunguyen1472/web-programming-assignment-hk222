@@ -40,9 +40,17 @@ session_start();
                         <li class="nav-item px-3">
                             <a href="?page=role-management" class="nav-link">Role management</a>
                         </li>
-                        <li class='nav-item px-3'>
+                        <!-- <li class='nav-item px-3'>
                             <a href='?page=login' class='nav-link'>Login</a>
-                        </li>
+                        </li> -->
+                        <?php
+							if(isset($_SESSION['login']) && $_SESSION['login'] === "true"){
+								echo "<li class='nav-item px-3'><a href='?page=logout' class='nav-link'>Logout</a></li>";
+							}
+							else {
+								echo "<li class='nav-item px-3'><a href='?page=login' class='nav-link'>Login</a></li>";
+							}
+						?>
                     </ul>
                 </div>
             </nav>
@@ -70,6 +78,9 @@ session_start();
                 include("task_description_done.php");
             } else if ($page == "home") {
                 echo "<p>This is home page</p>";
+            }
+            else{
+                include("logout.php");
             }
             ?>
         </main>
