@@ -1,0 +1,5 @@
+account(username: primary, password: varchar)
+user(username: foreign -> account.username, name: varchar, gender: enum('male', 'female'), role: enum('director', 'dp_head', 'employee'), dp_name: foreign -> department.name)
+department(dp_head: foreign -> user.name + primary, name: varchar)
+task(description: varchar, deadline: datetime, name: varchar, status: enum('approved', 'rejected', 'in progress', 'waiting'), dp_name: foreign -> department.name)
+submission(id: primary, content: varchar, date: datetime)
