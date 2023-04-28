@@ -28,6 +28,8 @@
     if ($password === $row['password']) {
         // Validate successfully, move to home page
         $_SESSION['login'] = "true";
+        $_SESSION['id'] = $row['id'];
+        $_SESSION['password'] = $row['password'];
         header("Location: http://localhost/Assignment/homepage.php?page=homepage");
         exit();
     } else {
