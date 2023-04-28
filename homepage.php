@@ -40,9 +40,7 @@ session_start();
                         <li class="nav-item px-3">
                             <a href="?page=role-management" class="nav-link">Role management</a>
                         </li>
-                        <!-- <li class='nav-item px-3'>
-                            <a href='?page=login' class='nav-link'>Login</a>
-                        </li> -->
+                        <!-- Login logout page -->
                         <?php
 							if(isset($_SESSION['login']) && $_SESSION['login'] === "true"){
 								echo "<li class='nav-item px-3'><a href='?page=logout' class='nav-link'>Logout</a></li>";
