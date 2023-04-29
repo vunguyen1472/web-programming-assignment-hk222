@@ -14,12 +14,12 @@
     // Compare data (id, password)
     if ($password === $row['password']) {
         $_SESSION['login-status'] = "Success";
-        $_SESSION['id'] = $row['id'];
-        header("Location: http://localhost/Assignment/homepage.php?page=homepage");
+        $_SESSION['user_id'] = $row['id'];
+        header("Location: index.php");
         exit();
     } else {
         $_SESSION['login-status'] = "Incorrect Username/Password";
-        header("Location: http://localhost/Assignment/homepage.php?page=login");
+        header("Location: index.php?page=login");
         exit();
     }
 ?>

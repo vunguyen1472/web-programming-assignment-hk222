@@ -1,5 +1,5 @@
 <?php
-    $_SESSION['login-status'] = NULL;
-    header("Location: homepage.php");
+    session_destroy();
+    header("Location: index.php");
     exit();
 ?>
