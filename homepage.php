@@ -40,9 +40,14 @@
                         <li class="nav-item mx-3">
                             <a href="?page=role-management" class="nav-link">Role management</a>
                         </li>
-                        <li class='nav-item px-3'>
-                            <a href='?page=login' class='nav-link'>Login</a>
-                        </li>
+                        <?php
+							if(isset($_SESSION['login-status']) && $_SESSION['login-status'] === "Success"){
+								echo "<li class='nav-item px-3'><a href='?page=logout' class='nav-link'>Logout</a></li>";
+							}
+							else {
+								echo "<li class='nav-item px-3'><a href='?page=login' class='nav-link'>Login</a></li>";
+							}
+						?>
                         <li class='nav-item mx-3 dropdown'>
                             <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Department
@@ -68,6 +73,8 @@
 
             if ($page == "login") {
                 include("login.php");
+            } else if ($page == "logout") {
+                include("logout.php");
             } else if ($page == "tasks-management") {
                 include("C:\\xampp\htdocs\\assignment\\task-assignment\\tasks-management.php");
             } else if ($page == "task-management") {
