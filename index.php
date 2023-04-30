@@ -9,13 +9,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css\index.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
+    
     <!-- Fontawesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    
+    <link href="css\index.css" rel="stylesheet">
     <title>Enterprise Managment</title>
 </head>
 
@@ -103,7 +103,7 @@
                 // echo '<style>div.container {margin: 0px;}</style>';
                 include("dashboard.php");
             } else if ($page == 'department-management'){
-                include("department-management.php");
+                include("department-management\department-management.php");
             } else if ($page == 'project-management'){
                 include("project-management.php");
             } else if ($page == "task_description") {

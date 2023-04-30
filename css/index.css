@@ -12,7 +12,7 @@ header .nav-item:hover {
 }
 
 main {
-    min-height: 28rem;
+    min-height: 80%;
 }
 
 footer>.navbar-brand>img {
