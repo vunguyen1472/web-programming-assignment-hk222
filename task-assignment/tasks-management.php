@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="css\tasks-management.css">
+    <link rel="stylesheet" href="task-assignment\tasks-management.css">
 </head>
 <body>
 <h4 style="font-weight: 600">Tasks management</h4>

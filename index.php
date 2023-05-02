@@ -47,6 +47,9 @@
                         <li class="nav-item mx-3">
                             <a href="index.php" class="nav-link">Home</a>
                         </li>
+                        <li class="nav-item mx-3">
+                            <a href="?page=tasks-management" class="nav-link">Task Assignment</a>
+                        </li>
                         <?php
                             if ($user_role == "staff"){
                                 echo "<li class='nav-item px-3'>";
@@ -58,9 +61,9 @@
                                 echo "<li class='nav-item px-3'>";
                                     echo "<a href='?page=department-management' class='nav-link'>Department</a>";
                                 echo "</li>";
-                                echo "<li class='nav-item px-3'>";
-                                    echo "<a href='?page=project-management' class='nav-link'>Projects</a>";
-                                echo "</li>";
+                                // echo "<li class='nav-item px-3'>";
+                                //     echo "<a href='?page=project-management' class='nav-link'>Projects</a>";
+                                // echo "</li>";
                             }
 
                             if ($user_role == "director"){
@@ -105,7 +108,7 @@
             } else if ($page == 'department-management'){
                 include("department-management\department-management.php");
             } else if ($page == 'project-management'){
-                include("project-management.php");
+                include("project-management\project-management.php");
             } else if ($page == "task_description") {
                 // echo '<style>div.container {margin: 0px;}</style>';
                 include("task_description.php");
