@@ -30,6 +30,10 @@
         $_SESSION['login'] = "true";
         $_SESSION['id'] = $row['id'];
         $_SESSION['password'] = $row['password'];
+        $_SESSION['name'] = $row['name'];
+        $_SESSION['gender'] = $row['gender'];
+        $_SESSION['phone'] = $row['phone'];
+        $_SESSION['address'] = $row['address'];
         header("Location: http://localhost/Assignment/homepage.php?page=homepage");
         exit();
     } else {
