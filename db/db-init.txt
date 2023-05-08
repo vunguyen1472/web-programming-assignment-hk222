@@ -10,17 +10,19 @@ create table `user` (
 );
 
 create table `department` (
+    `id` int(2) not null auto_increment,
     `supervisor_id` int(7) unique,
     `name` varchar(50) not null,
     `address` varchar(255),
+    primary key(`id`),
     foreign key (`supervisor_id`) references `user`(`id`)
 );
 
 create table `department_staff` (
-    `supervisor_id` int(1) not null,
+    `department_id` int(1) not null,
     `staff_id` int(7) not null,
-    primary key (`supervisor_id`, `staff_id`),
-    foreign key (`supervisor_id`) references `department`(`supervisor_id`),
+    primary key (`staff_id`),
+    foreign key (`department_id`) references `department`(`id`),
     foreign key (`staff_id`) references `user`(`id`)
 );
 
