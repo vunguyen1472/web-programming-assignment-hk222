@@ -68,6 +68,9 @@
 
                             if ($user_role == "director"){
                                 echo "<li class='nav-item px-3'>";
+                                    echo "<a href='?page=all_project_management' class='nav-link'>Project management</a>";
+                                echo "</li>";
+                                echo "<li class='nav-item px-3'>";
                                     echo "<a href='?page=role_management' class='nav-link'>Role management</a>";
                                 echo "</li>";
                             }
@@ -119,6 +122,8 @@
                 include("role_management.php");
             }  else if ($page == "home") {
                 include("homepage.php");
+            } else if ($page == "all_project_management"){
+                include("all_project_management.php");
             }
             ?>
         </main>
