@@ -104,6 +104,7 @@
                 include("task-assignment\\task-management.php");
             } else if ($page == "dashboard") {
                 // echo '<style>div.container {margin: 0px;}</style>';
+                include("search_task.php");
                 include("dashboard.php");
             } else if ($page == 'department-management'){
                 include("department-management\department-management.php");
@@ -112,6 +113,9 @@
             } else if ($page == "task_description") {
                 // echo '<style>div.container {margin: 0px;}</style>';
                 include("task_description.php");
+            }else if($page == 'taskdetails'){
+                include('taskdetails.php');
+            
             }  else if ($page == "home") {
                 include("homepage.php");
             }

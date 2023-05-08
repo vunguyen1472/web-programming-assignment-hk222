@@ -29,8 +29,20 @@
                         echo "<span class='fw-bold text-primary'>" . $row["status"] . "</span>";
                     echo "</div>";  
                 echo "</div>";
+                
                 echo "<p class='border-bottom py-4 mb-0'> <span class='fw-bold'>Description: </span>" . $row["description"] . "</p>";
             }
+        }
+
+        public static function getTaskSubmissions($task_id){
+            $conn = mysqli_connect('localhost', 'root', '', 'enterprise_management');
+            
+            $sql = "SELECT * FROM submission WHERE task_id = '$task_id';";
+            $result = $conn->query($sql);
+            
+            $conn->close();
+
+            return $result;
         }
     }
 ?>

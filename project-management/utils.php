@@ -83,23 +83,23 @@
                                 echo "<option selected disabled hidden>Assign staff for this task</option>"; 
                             }
 
-                            if ($row["status"] == "Not assigned" || $row["status"] == "In progress"){
+                            if ($row["status"] == "not assigned" || $row["status"] == "in progress"){
                                 Utils::getDpStaffs($prj_name);
                             }
                             else {
                                 echo "<option disabled>This task has been done</option>"; 
                             }
                         echo "</select></td>";
-                        if ($row["status"] == "Not assigned"){
+                        if ($row["status"] == "not assigned"){
                             echo "<td class='col-2 py-3 text-secondary fw-bold' id='task-status'>Not assigned</td>";
                         }
-                        else if ($row["status"] == "In progress"){
+                        else if ($row["status"] == "in progress"){
                             echo "<td class='col-2 py-3 text-primary fw-bold' id='task-status'>In progress</td>";
                         }
                         else if ($row["status"] == "approved" || $row["status"] == "Done"){
                             echo "<td class='col-2 py-3 text-success fw-bold' id='task-status'>Approved</td>";
                         }
-                        else if ($row["status"] == "eed review"){
+                        else if ($row["status"] == "need review"){
                             echo "<td class='col-2 py-3 text-warning-emphasis fw-bold' id='task-status'>" . $row["status"] . "</td>";
                         }
                     echo "</tr>";
