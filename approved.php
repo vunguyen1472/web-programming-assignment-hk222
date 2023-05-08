@@ -40,7 +40,7 @@
         echo "<div class='task' draggable='true' >";
         echo '<h6 style="display:none;">' . $row['status'] . '</h6>';
         echo "<div class='task__tags'><span class='task__tag task__tag--" . $row['name'] . "'>" . $row['name'] . "</span><button class='task__options'><i class='fas fa-ellipsis-h'></i></button></div>";
-        echo "<a href='homepage.php?page=task_description' style='color: black; text-decoration: none;' onclick='saveDescription(" . json_encode($row['description']) . ")'>";
+        echo "<a href='index.php?page=task_description' style='color: black; text-decoration: none;' onclick='saveDescription(" . json_encode($row['description']) . "," . $row['id'] . ")'>";
         echo "<p>" . $row['description'] . "</p></a>";
 
         echo "<div class='task__stats'>";

@@ -6,7 +6,7 @@ class Comment
 	private $name;
 	private $comment;
 	private $task_idx;
-	private $table = "comments";
+	private $table = "comment";
 
 	public function __construct()
 	{
@@ -30,6 +30,12 @@ class Comment
 	public function index()
 	{
 		$query = "SELECT * FROM $this->table ORDER BY id DESC";
+		$result = $this->db->select($query);
+		return $result;
+	}
+	public function justid($task_idx)
+	{
+		$query = "SELECT * FROM $this->table WHERE task_id = $task_idx";
 		$result = $this->db->select($query);
 		return $result;
 	}

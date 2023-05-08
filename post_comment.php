@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
 	} else {
 		$com->setData($name, $comment, $task_id);
 		if ($com->create()) {
-			header('Location: homepage.php?page=' . urlencode('task_description'));
+			header('Location: index.php?page=' . urlencode('task_description'));
 		}
 	}
 }

@@ -10,7 +10,7 @@
     <div class='task-description'>
         <?php
         // Check if task id is set in the URL
-        if (isset($_SESSION['description'])) {
+        if (isset($_SESSION['taskID'])) {
             // Connect to your database
             $conn = mysqli_connect("localhost", "root", "", "enterprise_management");
 
@@ -21,9 +21,9 @@
 
             // Retrieve task data based on the task id
 
-            $taskId = $_SESSION['description'];
+            $taskId = $_SESSION['taskID'];
             // echo "console.log('$taskId')";
-            $sql = "SELECT * FROM task WHERE description = '$taskId'"; // Add quotes around $taskId
+            $sql = "SELECT * FROM task WHERE id = $taskId"; // Add quotes around $taskId
             $result = mysqli_query($conn, $sql);
 
 

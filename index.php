@@ -163,12 +163,13 @@
         </footer>
     </div>
     <script>
-        function saveDescription(description) {
+        function saveDescription(description,taskID) {
             sessionStorage.setItem('description', description);
+            sessionStorage.setItem('taskID', taskID);
             var xhr = new XMLHttpRequest();
             xhr.open('POST', 'save_description.php', true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send('description=' + encodeURIComponent(description));
+            xhr.send('description=' + encodeURIComponent(description)  + '&taskID=' + encodeURIComponent(taskID) );
         }
     </script>
 </body>

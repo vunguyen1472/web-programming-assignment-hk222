@@ -105,16 +105,24 @@ $com = new Comment();
 		<h1>Comment System</h1>
 	</center>
 	<div class="box">
-		<ul>
+		
 			<?php
-			$result = $com->index();
-			while ($data = $result->fetch_assoc()) {
+			$task_idx = $_SESSION['taskID'];
+			$result = $com->justid($task_idx);
+			if ($result !== false){?>
+			<ul>	
+			<?php
+				while ($data = $result->fetch_assoc()) {
 			?>
 				<li><b style="color:black"><?php echo $data['user_id']; ?><b> - <?php echo $com->dateFormat($data['time']); ?> <br>
 							<h3><?php echo $data['content'] ?></h3>
 				</li>
 			<?php } ?>
 		</ul>
+		<?php
+			}else {
+				echo "No comment yet!, Post it with the underneath box!!";
+			}?>
 	</div><br><br>
 	<center>
 		<?php
@@ -131,10 +139,7 @@ $com = new Comment();
 					<td>Your Name:</td>
 					<td><input style="width: 221px;height: 30px;" type="" name="name" placeholder="Please enter your name"></td>
 				</tr>
-				<tr>
-					<td>Task id (1-12):</td>
-					<td><input style="width: 221px;height: 30px;" type="" name="task_id" placeholder="Please enter your task_id"></td>
-				</tr>
+				<input type ="hidden" name ="task_id" value = "<?php echo $_SESSION['taskID'];?>">
 				<tr>
 					<td>Comment:</td>
 					<td>
