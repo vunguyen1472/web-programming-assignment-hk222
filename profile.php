@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,10 +24,34 @@
                 <div class="h1">Profile</div>
                 <table class="table">
                     <tr><th colspan="2">User Details:</th></tr>
-                    <tr><th>Full name</th><td>Anne</td></tr>
-                    <tr><th>ID</th><td>2052001</td></tr>
-                    <tr><th>Gender</th><td>Female</td></tr>
-                    <tr><th>Phone number</th><td>0968686868</td></tr>
+                    <tr>
+                        <th>Full name</th>
+                        <td><?php echo $_SESSION['name'] ?></td>
+                    </tr>
+                    <tr>
+                        <th>ID</th>
+                        <td>
+                            <?php echo $_SESSION['id'] ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Gender</th>
+                        <td>
+                            <?php echo $_SESSION['gender'] ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Phone number</th>
+                        <td>
+                            <?php echo $_SESSION['phone'] ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>
+                            <?php echo $_SESSION['address'] ?>
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>
