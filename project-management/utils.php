@@ -19,7 +19,7 @@
         public static function getPrjDeadline($prj_name){
             $conn = mysqli_connect('localhost', 'root', '', 'enterprise_management');
             
-            $sql = "SELECT `end_date` FROM project WHERE `name` = '$prj_name'";
+            $sql = "SELECT `deadline` FROM project WHERE `name` = '$prj_name'";
             $result = $conn->query($sql);
             
             $conn->close();
@@ -28,7 +28,7 @@
                 // Do something here
             } else {
                 $row = $result->fetch_assoc();
-                return "<p class='mt-4'> <span class='fw-bold'>Deadline: </span>" . $row["end_date"] . "</p>";
+                return "<p class='mt-4'> <span class='fw-bold'>Deadline: </span>" . $row["deadline"] . "</p>";
             }
         }
 

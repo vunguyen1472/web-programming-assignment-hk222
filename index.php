@@ -95,9 +95,9 @@
             $page = isset($_GET['page']) ? $_GET['page'] : "home";
 
             if ($page == "login") {
-                include("login.php");
+                include("./auth/login.php");
             } else if ($page == "logout") {
-                include("logout.php");
+                include("./auth/logout.php");
             } else if ($page == "tasks-management") {
                 include("task-assignment\\tasks-management.php");
             } else if ($page == "task-management") {
@@ -174,3 +174,7 @@
 </body>
 
 </html>
+
+
+
+

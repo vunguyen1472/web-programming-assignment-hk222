@@ -1,0 +1,155 @@
+create table `user` (
+    `id` int(7) not null,
+    `password` varchar(20) not null,
+    `name` varchar(50) not null,
+    `type` enum('director', 'supervisor', 'staff') not null,
+    `gender` enum('male', 'female'),
+    `phone` char(11),
+    `address` varchar(255),
+    primary key (`id`)
+);
+
+create table `department` (
+    `supervisor_id` int(7) unique,
+    `name` varchar(50) not null,
+    `address` varchar(255),
+    foreign key (`supervisor_id`) references `user`(`id`)
+);
+
+create table `department_staff` (
+    `supervisor_id` int(1) not null,
+    `staff_id` int(7) not null,
+    primary key (`supervisor_id`, `staff_id`),
+    foreign key (`supervisor_id`) references `department`(`supervisor_id`),
+    foreign key (`staff_id`) references `user`(`id`)
+);
+
+create table `project` (
+    `id` int(3) not null auto_increment,
+    `supervisor_id` int(7),
+    `name` varchar(50) not null,
+    `description` varchar(255) not null,
+    `deadline` datetime not null,
+    `status` enum('Not assigned', 'In progress', 'Done') not null,
+    primary key (`id`),
+    foreign key (`supervisor_id`) references `user`(`id`)
+);
+
+create table `project_staff` (
+    `project_id` int(3) not null,
+    `staff_id` int(7),
+    primary key (`staff_id`),
+    foreign key (`project_id`) references `project`(`id`),
+    foreign key (`staff_id`) references `user`(`id`)
+);
+
+create table `task` (
+    `id` int(5) not null auto_increment,
+    `project_id` int(3) not null,
+    `staff_id` int(7),
+    `name` varchar(50) not null,
+    `description` varchar(255) not null,
+    `deadline` datetime not null,
+    `status` enum('Not assigned', 'In progress', 'Waiting', 'Done'),
+    primary key(`id`),
+    foreign key (`project_id`) references `project`(`id`),
+    foreign key (`staff_id`) references `user`(`id`)
+);
+
+create table `comment` (
+    `id` int(2) not null auto_increment,
+    `user_id` int(7) not null,
+    `task_id` int(5) not null,
+    `content` varchar(255) not null,
+    `time` datetime not null,
+    primary key (`id`),
+    foreign key (`user_id`) references `user`(`id`),
+    foreign key (`task_id`) references `task`(`id`)
+);
+
+create table `submission` (
+	`id` int(2) not null auto_increment,
+    `task_id` int(5) not null,
+    `submitted_date` datetime,
+    `content` varchar(255) not null,
+    `feedback_content` varchar(255),
+    `status` enum('Not processed', 'Processed'),
+    primary key (`id`),
+    foreign key (`task_id`) references `task`(`id`)
+);
+
+
+
+
+
+
+
+// ------------------ Insert ------------------------
+
+insert into `user`(`id`, `password`, `name`, `type`)
+values 
+    (2052001, 'password1', 'Director 1', 'director'),
+    (2052002, 'password2', 'Supervisor 1', 'supervisor'),
+    (2052003, 'password3', 'Supervisor 2', 'supervisor'),
+    (2052004, 'password4', 'Staff 1', 'staff'),
+    (2052005, 'password5', 'Staff 2', 'staff'),
+    (2052006, 'password6', 'Staff 3', 'staff'),
+    (2052007, 'password7', 'Staff 4', 'staff'),
+    (2052008, 'password8', 'Staff 5', 'staff'),
+    (2052009, 'password9', 'Staff 6', 'staff'),
+    (2052010, 'password0', 'Staff 7', 'staff'),
+    (2052011, 'password1', 'Staff 8', 'staff'),
+    (2052012, 'password2', 'Staff 9', 'staff'),
+    (2052013, 'password3', 'Staff 10', 'staff')
+;
+
+insert into `department`(`name`) 
+values 
+    ('Department 1'),        
+    ('Department 2'),
+    ('Department 3')
+;
+
+
+INSERT INTO `project` (`name`, `description`, `deadline`, `status`)
+VALUES 
+    ('Project 1', 'Description for Project 1', '2023-06-30 23:59:59', 'Not assigned'),
+    ('Project 2', 'Description for Project 2', '2023-07-15 23:59:59', 'Not assigned'),
+    ('Project 3', 'Description for Project 3', '2023-07-31 23:59:59', 'Not assigned'),
+    ('Project 4', 'Description for Project 4', '2023-08-15 23:59:59', 'Not assigned'),
+    ('Project 5', 'Description for Project 5', '2023-08-31 23:59:59', 'Not assigned'),
+    ('Project 6', 'Description for Project 6', '2023-09-15 23:59:59', 'Not assigned'),
+    ('Project 7', 'Description for Project 7', '2023-09-30 23:59:59', 'Not assigned'),
+    ('Project 8', 'Description for Project 8', '2023-10-15 23:59:59', 'Not assigned'),
+    ('Project 9', 'Description for Project 9', '2023-10-31 23:59:59', 'Not assigned'),
+    ('Project 10', 'Description for Project 10', '2023-11-15 23:59:59', 'Not assigned')
+;
+
+
+INSERT INTO `task` (`project_id`, `staff_id`, `name`, `description`, `deadline`, `status`)
+VALUES
+    (1, NULL, 'Task 1', 'Description for Task 1', '2023-06-25 23:59:59', 'Not assigned'),
+    (1, NULL, 'Task 2', 'Description for Task 2', '2023-06-30 23:59:59', 'Not assigned'),
+    (1, NULL, 'Task 3', 'Description for Task 3', '2023-07-05 23:59:59', 'Not assigned'),
+    (2, NULL, 'Task 1', 'Description for Task 1', '2023-07-10 23:59:59', 'Not assigned'),
+    (2, NULL, 'Task 2', 'Description for Task 2', '2023-07-20 23:59:59', 'Not assigned'),
+    (2, NULL, 'Task 3', 'Description for Task 3', '2023-07-30 23:59:59', 'Not assigned'),
+    (3, NULL, 'Task 1', 'Description for Task 1', '2023-08-05 23:59:59', 'Not assigned'),
+    (3, NULL, 'Task 2', 'Description for Task 2', '2023-08-15 23:59:59', 'Not assigned'),
+    (4, NULL, 'Task 1', 'Description for Task 1', '2023-08-20 23:59:59', 'Not assigned'),
+    (4, NULL, 'Task 2', 'Description for Task 2', '2023-08-25 23:59:59', 'Not assigned'),
+    (4, NULL, 'Task 3', 'Description for Task 3', '2023-08-30 23:59:59', 'Not assigned'),
+    (5, NULL, 'Task 1', 'Description for Task 1', '2023-09-05 23:59:59', 'Not assigned'),
+    (5, NULL, 'Task 2', 'Description for Task 2', '2023-09-10 23:59:59', 'Not assigned'),
+    (5, NULL, 'Task 3', 'Description for Task 3', '2023-09-15 23:59:59', 'Not assigned'),
+    (6, NULL, 'Task 1', 'Description for Task 1', '2023-09-20 23:59:59', 'Not assigned'),
+    (6, NULL, 'Task 2', 'Description for Task 2', '2023-09-25 23:59:59', 'Not assigned'),
+    (7, NULL, 'Task 1', 'Description for Task 1', '2023-09-30 23:59:59', 'Not assigned'),
+    (7, NULL, 'Task 2', 'Description for Task 2', '2023-10-05 23:59:59', 'Not assigned'),
+    (7, NULL, 'Task 3', 'Description for Task 3', '2023-10-10 23:59:59', 'Not assigned'),
+    (7, NULL, 'Task 4', 'Description for Task 4', '2023-10-15 23:59:59', 'Not assigned')
+;
+
+
+
+

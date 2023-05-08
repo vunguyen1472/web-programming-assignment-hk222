@@ -21,15 +21,15 @@
         public static function getDpProjects($supervisor_id){
             $conn = mysqli_connect('localhost', 'root', '', 'enterprise_management');
 
-            $sql = "SELECT `name`, `description`, `end_date` FROM `project` WHERE `supervisor_id` =" . $supervisor_id;
+            $sql = "SELECT `name`, `description`, `deadline` FROM `project` WHERE `supervisor_id` =" . $supervisor_id;
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 // output data of each row
                 while($row = $result->fetch_assoc()) {
-                    // echo "Name: " . $row["name"]. " - Description: " . $row["description"]. " - Deadline: " . $row["end_date"]. "<br>";
+                    // echo "Name: " . $row["name"]. " - Description: " . $row["description"]. " - Deadline: " . $row["deadline"]. "<br>";
                     echo "<li class='mb-3'>";
-                    echo "<a href='?page=project-management&project-name=" . $row["name"] . "'>". $row["name"] . "</a>" . "<span> | " . $row["end_date"] . "</span>";
+                    echo "<a href='?page=project-management&project-name=" . $row["name"] . "'>". $row["name"] . "</a>" . "<span> | " . $row["deadline"] . "</span>";
                     echo "<p>" . $row["description"] . "</p>";
                     echo "</li>";
                 }
@@ -113,3 +113,4 @@
         }
     }
 ?>
+
