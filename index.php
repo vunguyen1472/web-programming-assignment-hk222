@@ -68,7 +68,7 @@
 
                             if ($user_role == "director"){
                                 echo "<li class='nav-item px-3'>";
-                                    echo "<a href='' class='nav-link'>Role management</a>";
+                                    echo "<a href='?page=role_management' class='nav-link'>Role management</a>";
                                 echo "</li>";
                             }
 
@@ -115,7 +115,8 @@
                 include("task_description.php");
             }else if($page == 'taskdetails'){
                 include('taskdetails.php');
-            
+            } else if($page == 'role_management'){
+                include("role_management.php");
             }  else if ($page == "home") {
                 include("homepage.php");
             }
