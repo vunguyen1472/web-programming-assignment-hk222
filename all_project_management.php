@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="project-assignment/style.css">
+        <link rel="stylesheet" href="all-project-management/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	</head>
@@ -14,7 +14,7 @@
             <header class="panel-heading">
                 All projects List
                 <span class="pull-right">
-                    <button type="button" id="loading-btn" class="btn btn-warning btn-xs"><i class="fa fa-refresh"></i> Refresh</button>
+                    <button type="button" id="loading-btn" class="btn btn-warning btn-xs" onclick = location.reload()><i class="fa fa-refresh"></i> Refresh</button>
                     <a href="#" class=" btn btn-success btn-xs"> Create New Project</a>
                 </span>
             </header>
@@ -34,12 +34,66 @@
                         <th>Department</th>
                         <th>Project Progress</th>
                         <th>Project Status</th>
+                        <th>Deadline</th>
                         <th>Custom</th>
                     </tr>
                 </thead>
                 <tbody>
-                    
-                <tr>
+                <?php 
+                include('all-project-management/utils.php');
+                $project_list = get_project_list();
+                if ($project_list != NULL && $project_list->num_rows != 0){
+                    while ($row = $project_list->fetch_assoc()){
+                        $created_date = explode(' ', $row['created'])[0];
+                        $status = $row['status'];
+                        $color = 'black';
+                        if ($status == "In progress"){
+                            $color = 'blue';
+                        }
+                        else if ($status == "Done"){
+                            $color = 'green';
+                        }
+                        $department = '';
+                        if ($row['supervisor_id'] != '')
+                            $department = get_department_from_id($row['supervisor_id']);
+                        $progress = 0;
+                        if ($row['status'] != 'Not assigned')
+                            $progress = get_progress($row['id']);
+                        $btn = '<a href="#" class="btn btn-success btn-xs"><i class="fa fa-sign-in"></i> Assign </a>';
+                        if ($department != '')
+                            $btn = '<a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>';
+                        echo '
+                        <tr>
+                            <td class="p-name">
+                                <b>'. $row['name'] .'</b>
+                                <br>
+                                <small>Created '. $created_date .'</small>
+                            </td>
+                            <td class="p-team">
+                                '.$department.'
+                            </td>
+                            <td class="p-progress">
+                                <div class="progress progress-xs">
+                                    <div style="width: '. $progress .'%;" class="progress-bar progress-bar-success"></div>
+                                </div>
+                                <small>'. $progress .'% Complete </small>
+                            </td>
+                            <td>
+                                <span class="label label-primary"> <b style="color:'. $color .';">'. $status .'</b></span>
+                            </td>
+                            <td>
+                                '. $row['deadline'] .'
+                            </td>
+                            <td>
+                                '. $btn .'
+                            </td>
+                        </tr>';
+                    }
+                }
+                ?>
+                <!-- <tr>
                     <td class="p-name">
                         New Dashboard BS3
                         <br>
@@ -108,7 +162,7 @@
                     <td>
                         <a href="#" class="btn btn-success btn-xs"><i class="fa fa-sign-in"></i> Assign </a>
                     </td>
-                </tr>
+                </tr> -->
                 </tbody>
             </table>
         </section>
