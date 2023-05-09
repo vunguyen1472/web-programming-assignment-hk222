@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,7 +13,7 @@
     <body>
         <div class="row col-md-8 border rounded mx-auto mt-5 p-2 shadow-1g">
             <div class="col-md-4 text-center">
-                <img src="./images/anne-hathaway.jpg" class="img-fluid rounded" style="width: 180px; height:180px; height:180px; object-fit: cover;">
+                <img src="./images/no-image.png" class="img-fluid rounded" style="width: 180px; height:180px; height:180px; object-fit: cover;">
                 <!-- <div>
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Click below to select the image</label>
@@ -25,18 +28,19 @@
                         <tr><th colspan="2">User Details:</th></tr>
                         <tr><th>Full name</th>
                             <td>
-                                <input type="text" class="form-control" name="name" placeholder="Full name">
+                                <input value="<?=$_SESSION['name']?>" type="text" class="form-control" name="name" placeholder="Full name">
                             </td>
                         </tr>
                         <tr><th>ID</th>
                             <td>
-                                <input type="text" class="form-control" name="id" placeholder="ID">
+                                <input value="<?=$_SESSION['user_id']?>" type="text" class="form-control" name="id" placeholder="ID">
                             </td>
                         </tr>
                         <tr><th>Gender</th>
                             <td>
                                 <select class="form-select form-select mb-3" aris-label=".form-select-lg example">
-                                    <option selecte value="">Select Gender</option>
+                                    <option value="">Select Gender</option>
+                                    <option selected value="<?=$_SESSION['gender']?>"><?=$_SESSION['gender']?></option>
                                     <option value="Female">Female</option>
                                     <option value="Male">Male</option>
                                 </select>
@@ -44,12 +48,12 @@
                         </tr>
                         <tr><th>Phone number</th>
                             <td>
-                                <input type="text" class="form-control" name="phone" placeholder="Phone number">
+                                <input value="<?=$_SESSION['phone']?>" type="text" class="form-control" name="phone" placeholder="Phone number">
                             </td>
                         </tr>
                         <tr><th>Address</th>
                             <td>
-                                <input type="text" class="form-control" name="address" placeholder="Address">
+                                <input value="<?=$_SESSION['address']?>" type="text" class="form-control" name="address" placeholder="Address">
                             </td>
                         </tr>
                     
