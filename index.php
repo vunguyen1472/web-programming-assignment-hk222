@@ -102,7 +102,7 @@
             } else if ($page == "logout") {
                 include("./auth/logout.php");
             } else if ($page == "tasks-management") {
-                include("task-assignment\\tasks-management.php");
+                include("./task-assignment/tasks-management.php");
             } else if ($page == "task-management") {
                 include("task-assignment\\task-management.php");
             } else if ($page == "dashboard") {
@@ -124,6 +124,8 @@
                 include("homepage.php");
             } else if ($page == "all_project_management"){
                 include("all_project_management.php");
+            } else if ($page == "submission"){
+                include("./task-assignment/submission.php");
             }
             ?>
         </main>

@@ -1,0 +1,12 @@
+Supervisor có thể 
+- Approve (with review or not) -> set status của submission về approved 
+                               -> chuyển lại về trang task management 
+- Rejected -> bắt buộc có review và deadline mới
+           -> set status của submission = rejected
+	     -> chuyển lại về trang task management
+						
+
+Staff có thể:
+- Add submission -> chỉ khi chưa có submission nào 
+- Remove submission -> chỉ khi status của submission = rejected 
+		        -> sau khi remove set status của submission = waiting

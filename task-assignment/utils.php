@@ -34,7 +34,7 @@
             }
         }
 
-        public static function getTaskSubmissions($task_id){
+        public static function getTaskSubmission($task_id){
             $conn = mysqli_connect('localhost', 'root', '', 'enterprise_management');
             
             $sql = "SELECT * FROM submission WHERE task_id = '$task_id';";
