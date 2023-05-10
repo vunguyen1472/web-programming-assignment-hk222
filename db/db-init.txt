@@ -33,6 +33,7 @@ create table `project` (
     `description` varchar(255) not null,
     `deadline` datetime not null,
     `status` enum('Not assigned', 'In progress', 'Done') not null,
+    `created` datetime not null,
     primary key (`id`),
     foreign key (`supervisor_id`) references `user`(`id`)
 );
@@ -92,7 +93,7 @@ values
     (2052001, 'password1', 'Director 1', 'director'),
     (2052002, 'password2', 'Supervisor 1', 'supervisor'),
     (2052003, 'password3', 'Supervisor 2', 'supervisor'),
-    (2052004, 'password4', 'Staff 1', 'staff'),
+    (2052004, 'password4', 'Supervisor 3', 'supervisor'),
     (2052005, 'password5', 'Staff 2', 'staff'),
     (2052006, 'password6', 'Staff 3', 'staff'),
     (2052007, 'password7', 'Staff 4', 'staff'),
@@ -104,26 +105,26 @@ values
     (2052013, 'password3', 'Staff 10', 'staff')
 ;
 
-insert into `department`(`name`) 
+insert into `department`(`supervisor_id`,`name`) 
 values 
-    ('Department 1'),        
-    ('Department 2'),
-    ('Department 3')
+    (2052002, 'Department 1'),        
+    (2052003, 'Department 2'),
+    (2052004, 'Department 3')
 ;
 
 
-INSERT INTO `project` (`name`, `description`, `deadline`, `status`)
+INSERT INTO `project` (`name`, `supervisor_id`, `description`, `deadline`, `status`, `created`)
 VALUES 
-    ('Project 1', 'Description for Project 1', '2023-06-30 23:59:59', 'Not assigned'),
-    ('Project 2', 'Description for Project 2', '2023-07-15 23:59:59', 'Not assigned'),
-    ('Project 3', 'Description for Project 3', '2023-07-31 23:59:59', 'Not assigned'),
-    ('Project 4', 'Description for Project 4', '2023-08-15 23:59:59', 'Not assigned'),
-    ('Project 5', 'Description for Project 5', '2023-08-31 23:59:59', 'Not assigned'),
-    ('Project 6', 'Description for Project 6', '2023-09-15 23:59:59', 'Not assigned'),
-    ('Project 7', 'Description for Project 7', '2023-09-30 23:59:59', 'Not assigned'),
-    ('Project 8', 'Description for Project 8', '2023-10-15 23:59:59', 'Not assigned'),
-    ('Project 9', 'Description for Project 9', '2023-10-31 23:59:59', 'Not assigned'),
-    ('Project 10', 'Description for Project 10', '2023-11-15 23:59:59', 'Not assigned')
+    ('Project 1', 2052002, 'Description for Project 1', '2023-06-30 23:59:59', 'In progress', '2023-01-30 23:59:59'),
+    ('Project 2', 2052003, 'Description for Project 2', '2023-07-15 23:59:59', 'In progress', '2023-01-30 23:59:59'),
+    ('Project 3', 2052004, 'Description for Project 3', '2023-07-31 23:59:59', 'Done', '2023-01-30 23:59:59'),
+    ('Project 4', NULL, 'Description for Project 4', '2023-08-15 23:59:59', 'Not assigned', '2023-01-30 23:59:59'),
+    ('Project 5', 2052002, 'Description for Project 5', '2023-08-31 23:59:59', 'In progress', '2023-01-30 23:59:59'),
+    ('Project 6', 2052004, 'Description for Project 6', '2023-09-15 23:59:59', 'In progress', '2023-01-30 23:59:59'),
+    ('Project 7', NULL, 'Description for Project 7', '2023-09-30 23:59:59', 'Not assigned', '2023-01-30 23:59:59'),
+    ('Project 8', 2052003, 'Description for Project 8', '2023-10-15 23:59:59', 'Done', '2023-01-30 23:59:59'),
+    ('Project 9', 2052002, 'Description for Project 9', '2023-10-31 23:59:59', 'Done', '2023-01-30 23:59:59'),
+    ('Project 10', NULL, 'Description for Project 10', '2023-11-15 23:59:59', 'Not assigned', '2023-01-30 23:59:59')
 ;
 
 
@@ -149,8 +150,7 @@ VALUES
     (7, NULL, 'Task 2', 'Description for Task 2', '2023-10-05 23:59:59', 'not assigned'),
     (7, NULL, 'Task 3', 'Description for Task 3', '2023-10-10 23:59:59', 'not assigned'),
     (7, NULL, 'Task 4', 'Description for Task 4', '2023-10-15 23:59:59', 'not assigned')
-;
-
+    
 
 
 

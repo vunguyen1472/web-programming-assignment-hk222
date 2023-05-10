@@ -35,37 +35,39 @@
                             <?php 
                                 include("role-management/lib.php");
                                 $staff_list = get_staff_info_list();
-                                $idx = 0;
-                                $role_name = ["supervisor" => "Supervisor", "staff" => "Staff"];
-                                while ($row = $staff_list->fetch_assoc()){
-                                    if ($row["type"] != "director"){
-                                        $idx = $idx + 1;
-                                        echo '
-                                        <tr>
-                                            <th scope="row">'.$idx.'</th>
-                                            <td>' . $row["name"] . '</td>
-                                            <td>' . $row["id"] . '</td>
-                                            <td> UPDATING </td>
-                                            <td>
-                                            <select id=' . $row["id"] . '_' . $row["type"] . ' onChange="enable_btn(this)">';
-                                            foreach ($role_name as $key => $value){
-                                                if ($key == $row["type"]){
-                                                    echo '<option value=' . $row["type"] . ' selected>' . $value . '</option>';
+                                if ($staff_list->num_rows != 0){
+                                    $idx = 0;
+                                    $role_name = ["supervisor" => "Supervisor", "staff" => "Staff"];
+                                    while ($row = $staff_list->fetch_assoc()){
+                                        if ($row["type"] != "director"){
+                                            $idx = $idx + 1;
+                                            echo '
+                                            <tr>
+                                                <th scope="row">'.$idx.'</th>
+                                                <td>' . $row["name"] . '</td>
+                                                <td>' . $row["id"] . '</td>
+                                                <td> UPDATING </td>
+                                                <td>
+                                                <select id=' . $row["id"] . '_' . $row["type"] . ' onChange="enable_btn(this)">';
+                                                foreach ($role_name as $key => $value){
+                                                    if ($key == $row["type"]){
+                                                        echo '<option value=' . $row["type"] . ' selected>' . $value . '</option>';
+                                                    }
+                                                    else{
+                                                        echo '<option value=' . $key . '>' . $value . '</option>';
+                                                    }
                                                 }
-                                                else{
-                                                    echo '<option value=' . $key . '>' . $value . '</option>';
-                                                }
-                                            }
-                                            echo '</td>
-                                            <td>
-                                            
-                                            <form action="" id="role_update_form">
-                                                <button type="submit" class="btn btn-default" id="role_change_btn_' . $row["id"] . '" disabled>Change</button>
-                                                <input type="hidden" name="id" value='. $row["id"] .'>
-                                                <input type="hidden" id="role_change_' . $row["id"] . '" name="role" value='. $row["type"] .'>
-                                            </form>
-                                            
-                                        </tr>';
+                                                echo '</td>
+                                                <td>
+                                                
+                                                <form action="" id="role_update_form">
+                                                    <button type="submit" class="btn btn-default" id="role_change_btn_' . $row["id"] . '" disabled>Change</button>
+                                                    <input type="hidden" name="id" value='. $row["id"] .'>
+                                                    <input type="hidden" id="role_change_' . $row["id"] . '" name="role" value='. $row["type"] .'>
+                                                </form>
+                                                
+                                            </tr>';
+                                        }
                                     }
                                 }
                             ?>
