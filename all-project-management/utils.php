@@ -1,4 +1,50 @@
 <?php
+    function get_project_info($id){
+        $servername = "localhost";
+        $username = "root";
+        $password = NULL;
+        $dbname = "enterprise_management";
+
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+            return NULL;
+        }
+        else{
+            $id = intval($id);
+            $statement = $conn->prepare('SELECT `supervisor_id`, `name`, `description`, `deadline`, `status`, `created` FROM `project` WHERE `id` = ?');
+            $statement->bind_param("i", $id);
+            $statement->execute();
+            $result = $statement->get_result();
+            $row = $result->fetch_assoc();
+            $conn->close();
+            return $row;
+        }
+    }
+
+    function get_department_list(){
+        $servername = "localhost";
+        $username = "root";
+        $password = NULL;
+        $dbname = "enterprise_management";
+
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+            return NULL;
+        }
+        else{
+            $statement = $conn->prepare('SELECT * FROM `department`');
+            $statement->execute();
+            $result = $statement->get_result();
+            $conn->close();
+            return $result;
+        }
+    }
+    
+
     function get_project_list(){
         $servername = "localhost";
         $username = "root";
