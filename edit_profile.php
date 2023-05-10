@@ -1,6 +1,42 @@
+
 <?php
     session_start();
+    if (isset($_POST['save'])) {
+
+        $conn = mysqli_connect('localhost', 'root', '', 'enterprise_management');
+
+    // Get the updated data from the form
+    $name = $_POST['name'];
+    $id = $_POST['id'];
+    //$gender = $_POST['gender'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    $password = $_POST['password'];
+
+    // Update the user's profile in the database
+    $query = "UPDATE user SET name='$name', id='$id', phone='$phone', address='$address', password='$password' WHERE id=".$_SESSION['user_id'];
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        // Update the session variables
+        $_SESSION['name'] = $name;
+        $_SESSION['id'] = $id;
+        //$_SESSION['gender'] = $gender;
+        $_SESSION['phone'] = $phone;
+        $_SESSION['address'] = $address;
+        $_SESSION['password'] = $password;
+
+        // Redirect the user to their profile page
+        header('Location: profile.php');
+        exit;
+    } else {
+        // Show an error message if the update fails
+        echo "Update failed: " . mysqli_error($conn);
+    }
+}
+
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,7 +61,7 @@
                 <div class="h1">Edit Profile</div>
                 <form method="post">
                     <table class="table table-striped">
-                        <tr><th colspan="2">User Details:</th></tr>
+                        <!-- <tr><th colspan="2">User Details:</th></tr> -->
                         <tr><th>Full name</th>
                             <td>
                                 <input value="<?=$_SESSION['name']?>" type="text" class="form-control" name="name" placeholder="Full name">
@@ -41,8 +77,8 @@
                                 <select class="form-select form-select mb-3" aris-label=".form-select-lg example">
                                     <option value="">Select Gender</option>
                                     <option selected value="<?=$_SESSION['gender']?>"><?=$_SESSION['gender']?></option>
-                                    <option value="Female">Female</option>
-                                    <option value="Male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="male">Male</option>
                                 </select>
                             </td>
                         </tr>
@@ -56,11 +92,16 @@
                                 <input value="<?=$_SESSION['address']?>" type="text" class="form-control" name="address" placeholder="Address">
                             </td>
                         </tr>
+                        <tr><th>Password</th>
+                            <td>
+                                <input value="<?=$_SESSION['password']?>" type="text" class="form-control" name="password" placeholder="Password">
+                            </td>
+                        </tr>
                     
                     </table>
 
                     <div class="p-2">
-                        <button class="btn btn-primary float-end">Save</button>
+                        <button type="save" name="save" class="btn btn-primary float-end">Save</button>
                         <a href="profile.php">
                             <label class="btn btn-secondary">Back</button>
                         </a>
@@ -70,3 +111,4 @@
         </div>
     </body>
 </html>
+
