@@ -11,6 +11,7 @@
         
         $conn->close();
 
+        return "approved";
     }
 
     function approve_with_feedback($task_id, $feedback, $deadline){
@@ -24,6 +25,7 @@
         $result = $conn->query($sql);
         
         $conn->close();
+        return "approved";
     }
 
     $task_id = $_GET["task_id"];
@@ -36,6 +38,6 @@
     else {
         $deadline = date('Y-m-d H:i:s', strtotime($_GET["new_deadline"]));
         
-        approve_with_feedback($task_id, $feedback, $deadline);
+        echo approve_with_feedback($task_id, $feedback, $deadline);
     }
 ?>

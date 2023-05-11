@@ -127,6 +127,7 @@
         </li>
 
     </ul>
+    <?php include("submission.php"); ?>
     <div class="py-4" style="min-height: 10rem">
         <h5>Comments</h5>
         <?php include("comment_index.php"); ?>

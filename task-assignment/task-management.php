@@ -20,7 +20,9 @@
 
                 echo "<p> Status: <span class='$text_color'>" . $submission_data["status"] . "</span></p>";
                 echo "<form class='d-flex flex-column'>";
-                    echo "<label for='feedback-input'>Content: </label>";
+                echo "<label for='feedback-input'>Content: </label>";
+                    $_SESSION['taskID'] = $_GET['task-id'];
+                    include("submission_supervisor.php");
                     echo "<textarea id='feedback-content' rows='5' class='mt-2 p-2' disabled>" . $submission_data["content"] . "</textarea>";
                 echo "</form>";
             echo "</div>";
@@ -55,7 +57,6 @@
     <h5>Comments</h5>
     
     <?php
-     $_SESSION['taskID'] = $_GET['task-id'];
      include("comment_index_supervisor.php"); ?>
 </div> 
 
@@ -67,7 +68,8 @@
 
         const xhttp = new XMLHttpRequest();
         xhttp.onload = function() {
-            // location.reload();
+            console.log(this.reponseText);
+            location.reload();
         }
 
         xhttp.open("GET", "task-assignment/approve_submission.php?feedback=" + feedback + "&new_deadline=" + new_deadline + "&task_id=" + task_id);
@@ -81,7 +83,8 @@
 
         const xhttp = new XMLHttpRequest();
         xhttp.onload = function() {
-            // location.reload();
+            console.log(this.reponseText);
+            location.reload();
         }
 
         xhttp.open("GET", "task-assignment/reject_submission.php?feedback=" + feedback + "&new_deadline=" + new_deadline + "&task_id=" + task_id);
