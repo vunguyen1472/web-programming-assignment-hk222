@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="all-project-management/style.css">
+        <link rel="stylesheet" href="all-project-management/css/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	</head>
@@ -15,7 +15,7 @@
                 All projects List
                 <span class="pull-right">
                     <button type="button" id="loading-btn" class="btn btn-warning btn-xs" onclick = location.reload()><i class="fa fa-refresh"></i> Refresh</button>
-                    <a href="#" class=" btn btn-success btn-xs"> Create New Project</a>
+                    <a href="?page=create_project" class=" btn btn-success btn-xs"> Create New Project</a>
                 </span>
             </header>
             <br>
@@ -59,11 +59,21 @@
                         $progress = 0;
                         if ($row['status'] != 'Not assigned')
                             $progress = get_progress($row['id']);
-                        $btn = '<a href="#" class="btn btn-success btn-xs"><i class="fa fa-sign-in"></i> Assign </a>';
-                        if ($department != '')
-                            $btn = '<a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>';
+
+                        $del_btn = '<button name="delete_project" type="button" class="btn btn-danger btn-xs" value='. $row['id'] .'><i class="fa fa-trash-o"></i> Delete </button>';
+
+                        $progress_bar = '';
+                        if ($department != ''){
+                            $progress_bar = '<div class="progress progress-xs">
+                                <div style="width: '. $progress .'%;" class="progress-bar progress-bar-success"></div>
+                            </div>
+                            <small>'. $progress .'% Complete </small>';
+                            $del_btn = '';
+                        }
+                        if ($progress == 100){
+                            $del_btn = '';
+                        }
+                        
                         echo '
                         <tr>
                             <td class="p-name">
@@ -75,10 +85,7 @@
                                 '.$department.'
                             </td>
                             <td class="p-progress">
-                                <div class="progress progress-xs">
-                                    <div style="width: '. $progress .'%;" class="progress-bar progress-bar-success"></div>
-                                </div>
-                                <small>'. $progress .'% Complete </small>
+                                '. $progress_bar . '
                             </td>
                             <td>
                                 <span class="label label-primary"> <b style="color:'. $color .';">'. $status .'</b></span>
@@ -87,84 +94,16 @@
                                 '. $row['deadline'] .'
                             </td>
                             <td>
-                                '. $btn .'
+                                <a href="?page=edit_project&project_id='. $row['id'] .'" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                '. $del_btn .'
                             </td>
                         </tr>';
                     }
                 }
                 ?>
-                <!-- <tr>
-                    <td class="p-name">
-                        New Dashboard BS3
-                        <br>
-                        <small>Created 05.05.2023</small>
-                    </td>
-                    <td class="p-team">
-                        Department A
-                    </td>
-                    <td class="p-progress">
-                        <div class="progress progress-xs">
-                            <div style="width: 87%;" class="progress-bar progress-bar-success"></div>
-                        </div>
-                        <small>87% Complete </small>
-                    </td>
-                    <td>
-                        <span class="label label-primary">Active</span>
-                    </td>
-                    <td>
-                        <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="p-name">
-                        Creative Portfolio
-                        <br>
-                        <small>Created 05.05.2023</small>
-                    </td>
-                    <td class="p-team">
-                        Department B
-                    </td>
-                    <td class="p-progress">
-                        <div class="progress progress-xs">
-                            <div style="width: 65%;" class="progress-bar progress-bar-success"></div>
-                        </div>
-                        <small>65% Complete </small>
-                    </td>
-                    <td>
-                        <span class="label label-primary">Active</span>
-                    </td>
-                    <td>
-                        <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="p-name">
-                        Directory &amp; listing
-                        <br>
-                        <small>Created 2.09.2014</small>
-                    </td>
-                    <td class="p-team">
-                        Unassigned
-                    </td>
-                    <td class="p-progress">
-                        <div class="progress progress-xs">
-                            <div style="width: 50%;" class="progress-bar progress-bar-danger"></div>
-                        </div>
-                        <small>0% Complete </small>
-                    </td>
-                    <td>
-                        <span class="label label-primary">Not activated</span>
-                    </td>
-                    <td>
-                        <a href="#" class="btn btn-success btn-xs"><i class="fa fa-sign-in"></i> Assign </a>
-                    </td>
-                </tr> -->
                 </tbody>
             </table>
         </section>
+        <script src="all-project-management/js/utils.js"></script>
     </body>
 </html>

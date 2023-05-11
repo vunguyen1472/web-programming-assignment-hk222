@@ -123,8 +123,15 @@
                 include("homepage.php");
             } else if ($page == "all_project_management"){
                 include("all_project_management.php");
+
+            } else if ($page == "edit_project"){
+                include("all-project-management/edit_project.php");
+            } else if ($page == "create_project"){
+                include("all-project-management/create_project.php");
+
             } else if ($page == "submission"){
                 include("./task-assignment/submission.php");
+
             }
             ?>
         </main>
