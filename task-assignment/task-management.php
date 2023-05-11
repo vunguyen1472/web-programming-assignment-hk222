@@ -2,10 +2,11 @@
 
 <?php
     include("task-assignment\utils.php");
-?>
+    ?>
 
 <?php
     Utils::getTaskInfo($_GET["task-id"]);
+    $_SESSION['taskID'] = $_GET['task-id'];
 ?>
 
 <div class='py-4 border-bottom'>
@@ -14,14 +15,13 @@
         $submission = Utils::getTaskSubmission($_GET["task-id"]);
         if ($submission_data = $submission->fetch_assoc()){
             echo "<div>";
-                echo "<p> Deadline: " . $submission_data["submitted_date"] . "</p>";
+                echo "<p> Submitted date: " . $submission_data["submitted_date"] . "</p>";
 
                 $text_color = ($submission_data["status"] == 'waiting') ? 'text-warning' : (($submission_data["status"] == 'approved') ? 'text-success' : 'text-danger');
 
                 echo "<p> Status: <span class='$text_color'>" . $submission_data["status"] . "</span></p>";
                 echo "<form class='d-flex flex-column'>";
                 echo "<label for='feedback-input'>Content: </label>";
-                    $_SESSION['taskID'] = $_GET['task-id'];
                     include("submission_supervisor.php");
                     echo "<textarea id='feedback-content' rows='5' class='mt-2 p-2' disabled>" . $submission_data["content"] . "</textarea>";
                 echo "</form>";

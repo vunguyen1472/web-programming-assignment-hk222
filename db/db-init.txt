@@ -30,7 +30,6 @@ create table `project` (
     `id` int(3) not null auto_increment,
     `supervisor_id` int(7),
     `name` varchar(50) not null,
-    `created` datetime not null,
     `description` varchar(255) not null,
     `deadline` datetime not null,
     `status` enum('Not assigned', 'In progress', 'Done') not null,
