@@ -102,19 +102,18 @@
             } else if ($page == "logout") {
                 include("./auth/logout.php");
             } else if ($page == "tasks-management") {
-                include("task-assignment\\tasks-management.php");
+                include("./task-assignment/tasks-management.php");
             } else if ($page == "task-management") {
-                include("task-assignment\\task-management.php");
+                include("task-assignment/task-management.php");
             } else if ($page == "dashboard") {
                 // echo '<style>div.container {margin: 0px;}</style>';
                 include("search_task.php");
                 include("dashboard.php");
             } else if ($page == 'department-management'){
-                include("department-management\department-management.php");
+                include("department-management/department-management.php");
             } else if ($page == 'project-management'){
-                include("project-management\project-management.php");
+                include("project-management/project-management.php");
             } else if ($page == "task_description") {
-                // echo '<style>div.container {margin: 0px;}</style>';
                 include("task_description.php");
             }else if($page == 'taskdetails'){
                 include('taskdetails.php');
@@ -124,10 +123,15 @@
                 include("homepage.php");
             } else if ($page == "all_project_management"){
                 include("all_project_management.php");
+
             } else if ($page == "edit_project"){
                 include("all-project-management/edit_project.php");
             } else if ($page == "create_project"){
                 include("all-project-management/create_project.php");
+
+            } else if ($page == "submission"){
+                include("./task-assignment/submission.php");
+
             }
             ?>
         </main>

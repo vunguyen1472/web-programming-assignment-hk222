@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="task-assignment/task-management.css">
+
 <?php
     include("task-assignment\utils.php");
 ?>
@@ -6,83 +8,79 @@
     Utils::getTaskInfo($_GET["task-id"]);
 ?>
 
-<ul class="submission-list d-flex flex-wrap border-bottom px-0 mb-0">
+<div class='py-4 border-bottom'>
+        <p class='fw-bold'>Submissions: </p>
     <?php
-        // $submissions = Utils::getTaskSubmissions($_GET["task-id"]);
-        // while ($submission = $submissions->fetch_assoc()){
-        //     echo "<li class='submission d-flex m-4'>";
-        //         echo "<i class='fa-regular fa-file me-4'></i>";
-        //         echo "<div>";
-        //             <h6>Submission1.doc</h6>
-        //             <span>14 Jul, 2002</span>
-        //         echo "</div>";
-        //     echo "</li>";
-        // }
+        $submission = Utils::getTaskSubmission($_GET["task-id"]);
+        if ($submission_data = $submission->fetch_assoc()){
+            echo "<div>";
+                echo "<p> Deadline: " . $submission_data["submitted_date"] . "</p>";
+
+                $text_color = ($submission_data["status"] == 'waiting') ? 'text-warning' : (($submission_data["status"] == 'approved') ? 'text-success' : 'text-danger');
+
+                echo "<p> Status: <span class='$text_color'>" . $submission_data["status"] . "</span></p>";
+                echo "<form class='d-flex flex-column'>";
+                    echo "<label for='feedback-input'>Content: </label>";
+                    echo "<textarea id='feedback-content' rows='5' class='mt-2 p-2' disabled>" . $submission_data["content"] . "</textarea>";
+                echo "</form>";
+            echo "</div>";
+            echo "<form class='d-flex flex-column mt-4'>";
+                echo "<div class='d-flex flex-column'>";
+                    echo "<label for='feedback-input'>Feedback: </label>";
+                    echo "<textarea id='feedback-input' rows='5' class='mt-2 p-2'>" . $submission_data["feedback_content"] . "</textarea>";
+                echo "</div>";
+                if ($submission_data["status"] == 'waiting'){
+                    echo "<div class='mt-4'>";
+                        echo "<label for='deadline-input'>New deadline for re-submission: </label>";
+                        echo "<input type='datetime-local' id='deadline-input' placeholder='Enter your feedback for the submission' class='ms-3'>";
+                    echo "</div>";
+                    
+                    echo "<div class='d-flex align-items-center mt-4'>";
+                        echo "<button class='btn btn-primary' onClick='handleApproveSubmission()'>Approved</button>";
+                        echo "<button class='btn btn-danger ms-3' onClick='handleRejectSubmission()'>Rejected</button>";
+                    echo "</div>"; 
+                }   
+            echo "</form>";
+            
+            
+        }
+        else {
+            echo "<p class='text-danger'>[!] There has not been any submission yet</p>";
+        }
     ?>
-    <li class="submission d-flex m-4">
-        <i class="fa-regular fa-file me-4"></i>
-        <div>
-            <h6>
-                <a href="">Submission1.doc</a>
-            </h6>
-            <span>14 Jul, 2002</span>
-        </div>
-    </li>
-    <li class="submission d-flex m-4">
-        <i class="fa-regular fa-file me-4"></i>
-        <div>
-            <h6>Submission1.doc</h6>
-            <span>14 Jul, 2002</span>
-        </div>
-    </li>
-    <li class="submission d-flex m-4">
-        <i class="fa-regular fa-file me-4"></i>
-        <div>
-            <h6>Submission1.doc</h6>
-            <span>14 Jul, 2002</span>
-        </div>
-    </li>
-    <li class="submission d-flex m-4">
-        <i class="fa-regular fa-file me-4"></i>
-        <div>
-            <h6>Submission1.doc</h6>
-            <span>14 Jul, 2002</span>
-        </div>
-    </li>
-    <li class="submission d-flex m-4">
-        <i class="fa-regular fa-file me-4"></i>
-        <div>
-            <h6>Submission1.doc</h6>
-            <span>14 Jul, 2002</span>
-        </div>
-    </li>
-    <li class="submission d-flex m-4">
-        <i class="fa-regular fa-file me-4"></i>
-        <div>
-            <h6>Submission1.doc</h6>
-            <span>14 Jul, 2002</span>
-        </div>
-    </li>
-    <li class="submission d-flex m-4">
-        <i class="fa-regular fa-file me-4"></i>
-        <div>
-            <h6>Submission1.doc</h6>
-            <span>14 Jul, 2002</span>
-        </div>
-    </li>
-    <li class="submission d-flex m-4">
-        <i class="fa-regular fa-file me-4"></i>
-        <div>
-            <h6>Submission1.doc</h6>
-            <span>14 Jul, 2002</span>
-        </div>
-    </li>
-    <li class="submission d-flex m-4 align-items-center">
-        <i class="fa-regular fa-file me-4"></i>
-        <a href="">Add more submission</a>
-    </li>
-        
-</ul>
+</div>
+
+
 <div class="py-4" style="min-height: 10rem">
     <h5>Comments</h5>
-</div>
+</div> 
+
+<script>
+    function handleApproveSubmission() {
+        let feedback = document.getElementById("feedback-input").value;
+        let new_deadline = document.getElementById("deadline-input").value;
+        let task_id = <?php echo $_GET["task-id"]?>;
+
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            location.reload();
+        }
+
+        xhttp.open("GET", "task-assignment/approve_submission.php?feedback=" + feedback + "&new_deadline=" + new_deadline + "&task_id=" + task_id);
+        xhttp.send();
+    }   
+
+    function handleRejectSubmission() {
+        let feedback = document.getElementById("feedback-input").value;
+        let new_deadline = document.getElementById("deadline-input").value;
+        let task_id = <?php echo $_GET["task-id"]?>;
+
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            location.reload();
+        }
+
+        xhttp.open("GET", "task-assignment/reject_submission.php?feedback=" + feedback + "&new_deadline=" + new_deadline + "&task_id=" + task_id);
+        xhttp.send();
+    }
+</script>

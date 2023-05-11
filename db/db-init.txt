@@ -53,7 +53,7 @@ create table `task` (
     `name` varchar(50) not null,
     `description` varchar(255) not null,
     `deadline` datetime not null,
-    `status` enum('Not assigned', 'In progress', 'Waiting', 'Done'),
+    `status` enum('not assigned', 'in progress', 'waiting', 'done'),
     primary key(`id`),
     foreign key (`project_id`) references `project`(`id`),
     foreign key (`staff_id`) references `user`(`id`)
@@ -71,13 +71,12 @@ create table `comment` (
 );
 
 create table `submission` (
-	`id` int(2) not null auto_increment,
     `task_id` int(5) not null,
     `submitted_date` datetime,
     `content` varchar(255) not null,
     `feedback_content` varchar(255),
-    `status` enum('Not processed', 'Processed'),
-    primary key (`id`),
+    `status` enum('waiting', 'approved', 'rejected'),
+    primary key (`task_id`),
     foreign key (`task_id`) references `task`(`id`)
 );
 
@@ -131,24 +130,28 @@ VALUES
 
 INSERT INTO `task` (`project_id`, `staff_id`, `name`, `description`, `deadline`, `status`)
 VALUES
-    (1, 2052002, 'Task 1', 'Description for Task 1', '2023-06-25 23:59:59', 'Done'),
-    (1, 2052002, 'Task 2', 'Description for Task 2', '2023-06-30 23:59:59', 'Done'),
-    (1, 2052002, 'Task 3', 'Description for Task 3', '2023-07-05 23:59:59', 'Waiting'),
-    (2, 2052003, 'Task 1', 'Description for Task 1', '2023-07-10 23:59:59', 'Waiting'),
-    (2, 2052003, 'Task 2', 'Description for Task 2', '2023-07-20 23:59:59', 'In progress'),
-    (2, 2052003, 'Task 3', 'Description for Task 3', '2023-07-30 23:59:59', 'Not assigned'),
-    (3, 2052004, 'Task 1', 'Description for Task 1', '2023-08-05 23:59:59', 'Done'),
-    (3, 2052004, 'Task 2', 'Description for Task 2', '2023-08-15 23:59:59', 'Done'),
-    (5, 2052002, 'Task 1', 'Description for Task 1', '2023-09-05 23:59:59', 'In progress'),
-    (5, 2052002, 'Task 2', 'Description for Task 2', '2023-09-10 23:59:59', 'Done'),
-    (5, 2052002, 'Task 3', 'Description for Task 3', '2023-09-15 23:59:59', 'Done'),
-    (6, 2052004, 'Task 1', 'Description for Task 1', '2023-09-20 23:59:59', 'In progress'),
-    (6, 2052004, 'Task 2', 'Description for Task 2', '2023-09-25 23:59:59', 'In progress'),
-    (8, 2052003, 'Task 1', 'Description for Task 1', '2023-09-30 23:59:59', 'Done'),
-    (9, 2052002, 'Task 1', 'Description for Task 2', '2023-10-05 23:59:59', 'Done'),
-    (9, 2052002, 'Task 2', 'Description for Task 3', '2023-10-10 23:59:59', 'Done')
+    (1, NULL, 'Task 1', 'Description for Task 1', '2023-06-25 23:59:59', 'not assigned'),
+    (1, NULL, 'Task 2', 'Description for Task 2', '2023-06-30 23:59:59', 'not assigned'),
+    (1, NULL, 'Task 3', 'Description for Task 3', '2023-07-05 23:59:59', 'not assigned'),
+    (2, NULL, 'Task 1', 'Description for Task 1', '2023-07-10 23:59:59', 'not assigned'),
+    (2, NULL, 'Task 2', 'Description for Task 2', '2023-07-20 23:59:59', 'not assigned'),
+    (2, NULL, 'Task 3', 'Description for Task 3', '2023-07-30 23:59:59', 'not assigned'),
+    (3, NULL, 'Task 1', 'Description for Task 1', '2023-08-05 23:59:59', 'not assigned'),
+    (3, NULL, 'Task 2', 'Description for Task 2', '2023-08-15 23:59:59', 'not assigned'),
+    (4, NULL, 'Task 1', 'Description for Task 1', '2023-08-20 23:59:59', 'not assigned'),
+    (4, NULL, 'Task 2', 'Description for Task 2', '2023-08-25 23:59:59', 'not assigned'),
+    (4, NULL, 'Task 3', 'Description for Task 3', '2023-08-30 23:59:59', 'not assigned'),
+    (5, NULL, 'Task 1', 'Description for Task 1', '2023-09-05 23:59:59', 'not assigned'),
+    (5, NULL, 'Task 2', 'Description for Task 2', '2023-09-10 23:59:59', 'not assigned'),
+    (5, NULL, 'Task 3', 'Description for Task 3', '2023-09-15 23:59:59', 'not assigned'),
+    (6, NULL, 'Task 1', 'Description for Task 1', '2023-09-20 23:59:59', 'not assigned'),
+    (6, NULL, 'Task 2', 'Description for Task 2', '2023-09-25 23:59:59', 'not assigned'),
+    (7, NULL, 'Task 1', 'Description for Task 1', '2023-09-30 23:59:59', 'not assigned'),
+    (7, NULL, 'Task 2', 'Description for Task 2', '2023-10-05 23:59:59', 'not assigned'),
+    (7, NULL, 'Task 3', 'Description for Task 3', '2023-10-10 23:59:59', 'not assigned'),
+    (7, NULL, 'Task 4', 'Description for Task 4', '2023-10-15 23:59:59', 'not assigned')
     
-;
+
 
 
 

@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="./css/login.css">
 <div class="form">
     <h2>LOGIN</h2>
     <form action="auth/login_process.php" method="post">
