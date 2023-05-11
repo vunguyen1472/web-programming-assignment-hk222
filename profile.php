@@ -15,7 +15,7 @@
             <div class="col-md-4 text-center">
                 <img src="./images/no-image.png" class="img-fluid rounded" style="width: 180px; height:180px; height:180px; object-fit: cover;">
                 <div>
-                    <a href="edit_profile.php">
+                    <a href="?page=edit_profile">
                         <button class="mx-auto m-1 btn-sm btn btn-primary">Edit Profile</button>
                     </a>
                 </div>

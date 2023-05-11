@@ -83,7 +83,7 @@
                                     echo "<a href='?page=logout' class='nav-link'>Logout</a>";
                                 echo "</li>"; 
                                 echo "<li class='nav-item px-3'>";
-                                    echo "<a href='' class='nav-link'><i class='fa-regular fa-user'></i></a>";
+                                    echo "<a href='?page=profile' class='nav-link'><i class='fa-regular fa-user'></i></a>";
                                 echo "</li>"; 
                             }
                         ?>
@@ -128,7 +128,10 @@
                 include("all-project-management/edit_project.php");
             } else if ($page == "create_project"){
                 include("all-project-management/create_project.php");
-
+            } else if ($page == "profile"){
+                include("profile.php");
+            } else if ($page == "edit_profile"){
+                include("edit_profile.php");
             } else if ($page == "submission"){
                 include("./task-assignment/submission.php");
 
