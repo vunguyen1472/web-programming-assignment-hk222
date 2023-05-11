@@ -50,9 +50,13 @@
     ?>
 </div>
 
-
 <div class="py-4" style="min-height: 10rem">
+
     <h5>Comments</h5>
+    
+    <?php
+     $_SESSION['taskID'] = $_GET['task-id'];
+     include("comment_index_supervisor.php"); ?>
 </div> 
 
 <script>
@@ -63,7 +67,7 @@
 
         const xhttp = new XMLHttpRequest();
         xhttp.onload = function() {
-            location.reload();
+            // location.reload();
         }
 
         xhttp.open("GET", "task-assignment/approve_submission.php?feedback=" + feedback + "&new_deadline=" + new_deadline + "&task_id=" + task_id);
@@ -77,7 +81,7 @@
 
         const xhttp = new XMLHttpRequest();
         xhttp.onload = function() {
-            location.reload();
+            // location.reload();
         }
 
         xhttp.open("GET", "task-assignment/reject_submission.php?feedback=" + feedback + "&new_deadline=" + new_deadline + "&task_id=" + task_id);

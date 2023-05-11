@@ -8,7 +8,7 @@
 
 <body>
     <div class='task blank-box' draggable='true'>
-        <h6 style="display: none;">need review</h6>
+        <h6 style="display: none;">waiting</h6>
         <div class='task__tags'><span class='task__tag'>+</span><button class='task__options'><i class='fas fa-ellipsis-h'></i></button></div>
 
         <div class='task__stats'>
@@ -26,7 +26,7 @@
     }
 
     // Retrieve data from 'task' table with status 'approved'
-    $sql = "SELECT * FROM task WHERE status = 'need review'";
+    $sql = "SELECT * FROM task WHERE status = 'waiting'";
     $result = mysqli_query($conn, $sql);
 
     // Loop through the result set and display tasks

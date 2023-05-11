@@ -28,7 +28,8 @@
     }
 
     // Retrieve data from 'task' table with status 'done'
-    $sql = "SELECT * FROM task WHERE status = 'done'";
+    $user_id = $_SESSION['user_id'];
+    $sql = "SELECT * FROM task WHERE status = 'done' and staff_id = $user_id";
     $result = mysqli_query($conn, $sql);
 
     // function savedoneDescription($description)

@@ -10,12 +10,12 @@
 <body>
     <!-- Add a blank task box at the bottom of the column -->
     <div class='task blank-box' draggable='true'>
-        <h6 style="display: none;">approved</h6>
+        <h6 style="display: none;">Ready</h6>
         <div class='task__tags'><span class='task__tag'>+</span><button class='task__options'><i class='fas fa-ellipsis-h'></i></button></div>
 
         <div class='task__stats'>
 
-            <span class='task__approved'></span>
+            <span class='task__ready'></span>
         </div>
     </div>
     <?php
@@ -27,8 +27,9 @@
         die("Connection failed: " . mysqli_connect_error());
     }
 
+    $user_id = $_SESSION['user_id'];
     // Retrieve data from 'task' table with status 'approved'
-    $sql = "SELECT * FROM task WHERE status = 'approved'";
+    $sql = "SELECT * FROM task WHERE status = 'ready' and staff_id = $user_id";
     $result = mysqli_query($conn, $sql);
 
     // function saveDescription($description)
@@ -49,7 +50,7 @@
         echo "</div>";
         echo "<div class='task__stats'>";
         echo "<span><i class='fas fa-paperclip'></i>" . $row['name'] . "</span>";
-        echo "<span class='task__approved'></span>";
+        echo "<span class='task__ready'></span>";
         echo "</div>";
         echo "</div>";
     }

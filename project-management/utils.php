@@ -96,10 +96,10 @@
                         else if ($row["status"] == "in progress"){
                             echo "<td class='col-2 py-3 text-primary fw-bold' id='task-status'>In progress</td>";
                         }
-                        else if ($row["status"] == "approved" || $row["status"] == "Done"){
+                        else if ($row["status"] == "ready" || $row["status"] == "done"){
                             echo "<td class='col-2 py-3 text-success fw-bold' id='task-status'>Approved</td>";
                         }
-                        else if ($row["status"] == "need review"){
+                        else if ($row["status"] == "waiting"){
                             echo "<td class='col-2 py-3 text-warning-emphasis fw-bold' id='task-status'>" . $row["status"] . "</td>";
                         }
                     echo "</tr>";

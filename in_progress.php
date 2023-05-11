@@ -26,8 +26,9 @@
         die("Connection failed: " . mysqli_connect_error());
     }
 
+    $user_id = $_SESSION['user_id'];
     // Retrieve data from 'task' table with status 'approved'
-    $sql = "SELECT * FROM task WHERE status = 'in progress'";
+    $sql = "SELECT * FROM task WHERE status = 'in progress' and staff_id = $user_id";
     $result = mysqli_query($conn, $sql);
 
     // Loop through the result set and display tasks

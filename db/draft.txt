@@ -1,13 +1,10 @@
 Supervisor có thể 
--> Approve (with review or not) 
-	-> Nếu có deadline thì set status của submission = approved 
-		-> set status của task = in progress
+-> Approve 
+	-> Nếu có deadline thì set status của submission = approved + set status của task = in progress
 	-> Nếu không deadline thì set status của submission = approved + status của task = done
 
-- Rejected 
--> bắt buộc có review và deadline mới
+- Rejected (chỉ khi task status = waiting) 
 -> set status của submission = rejected
--> chuyển lại về trang task management
 						
 
 Staff có thể:

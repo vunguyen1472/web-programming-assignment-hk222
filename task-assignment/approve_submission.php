@@ -29,7 +29,6 @@
     $task_id = $_GET["task_id"];
     $feedback = $_GET["feedback"];
     $deadline = $_GET["new_deadline"];
-    // $deadline = date('Y-m-d H:i:s', strtotime($_GET["new_deadline"]));
 
     if ($deadline == ''){
         echo approve_default($task_id, $feedback);
