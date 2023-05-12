@@ -10,7 +10,7 @@
 ?>
 
 <div class='py-4 border-bottom'>
-        <p class='fw-bold'>Submissions: </p>
+    <p class='fw-bold'>Submissions: </p>
     <?php
         $submission = Utils::getTaskSubmission($_GET["task-id"]);
         if ($submission_data = $submission->fetch_assoc()){

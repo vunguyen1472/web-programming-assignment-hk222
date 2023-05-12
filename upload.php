@@ -48,7 +48,10 @@ if ($count > 0) {
 
 if (mysqli_query($conn, $sql)) {
   // Update the status column in the task table to "waiting"
-  $sql_update_task = "UPDATE task SET status = 'waiting' WHERE id = $task_id";
+  $sql_update_task = "UPDATE task AS t
+                    JOIN submission AS s ON t.id = s.task_id
+                    SET t.status = 'waiting', s.status = 'waiting'
+                    WHERE t.id = $task_id";
   if (mysqli_query($conn, $sql_update_task)) {
     echo "Record created or updated successfully.";
   } else {
@@ -60,6 +63,7 @@ if (mysqli_query($conn, $sql)) {
 
 
 mysqli_close($conn);
+
 
 // Redirect back to the HTML form page with the file name as a query parameter
 header("Location: http://localhost/assignment/index.php?page=task_description");

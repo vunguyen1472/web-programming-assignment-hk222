@@ -83,7 +83,7 @@
                                 echo "<option selected disabled hidden>Assign staff for this task</option>"; 
                             }
 
-                            if ($row["status"] == "not assigned" || $row["status"] == "in progress"){
+                            if ($row["status"] == "not assigned" || $row["status"] == "in progress" || $row["status"] == "ready" ){
                                 Utils::getDpStaffs($prj_name);
                             }
                             else {
@@ -96,10 +96,10 @@
                         else if ($row["status"] == "in progress"){
                             echo "<td class='col-2 py-3 text-primary fw-bold' id='task-status'>In progress</td>";
                         }
-                        else if ($row["status"] == "ready" || $row["status"] == "done"){
+                        else if ($row["status"] == "done"){
                             echo "<td class='col-2 py-3 text-success fw-bold' id='task-status'>Approved</td>";
                         }
-                        else if ($row["status"] == "waiting"){
+                        else if ($row["status"] == "waiting" || $row["status"] == "ready"){
                             echo "<td class='col-2 py-3 text-warning-emphasis fw-bold' id='task-status'>" . $row["status"] . "</td>";
                         }
                     echo "</tr>";
@@ -112,7 +112,7 @@
         public static function assignStaff($staff_id, $task_id){
             $conn = mysqli_connect('localhost', 'root', '', 'enterprise_management');
 
-            $sql = "UPDATE `task` SET `staff_id` = '$staff_id', `status` = 'In progress' WHERE `id` = '$task_id';";
+            $sql = "UPDATE `task` SET `staff_id` = '$staff_id', `status` = 'ready' WHERE `id` = '$task_id';";
             $conn->query($sql);
 
             $conn->close();
