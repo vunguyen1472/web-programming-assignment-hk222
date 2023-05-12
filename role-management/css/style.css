@@ -73,8 +73,30 @@ max-width: 50%; }
     color: #dc3545; }
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: rgba(0, 0, 0, 0.05); }
-        
-    
-    
 
+.soft-pagination{
+text-align:center;
+background: rgb(23, 53, 171);
+background: linear-gradient(90deg, rgb(23, 53, 171) 0%, rgb(0, 255, 251) 100%);
+margin-top:10px;width:100%;
+-webkit-box-shadow: 1px 7px 14px 0px rgba(189,178,189,1);
+-moz-box-shadow: 1px 7px 14px 0px rgba(189,178,189,1);
+box-shadow: 1px 7px 14px 0px rgba(189,178,189,1);  
+}
+.soft-pagination-items{
+color: #ffffff;
+cursor: pointer; 
+}
+.soft-pagination-items li{
+display: inline-block;
+padding: 15px 25px;font-weight: 800;
+clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+}
+.soft-pagination-items li.active{
+background: rgb(61, 255, 249); color:#000;
+}
+.soft-pagination-items li:hover{
+background: linear-gradient(120deg, rgb(61, 255, 249) 100%, rgb(255, 255, 255) 10%);
+color:#000000;
+}
     
